@@ -9,11 +9,11 @@ export default function Headers({ login }) {
     setSearche(!isSearch);
   };
   return (
-    <Popover className="relative bg-gray-100 ">
+    <Popover className="relative bg-gray-900 ">
       {({ open }) => (
         <>
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="flex justify-between items-center border-b-2 border-gray-200 py-4 md:justify-start md:space-x-10">
+            <div className="flex justify-between items-center  bg-gray-900 py-4 md:justify-start md:space-x-10">
               <div className="flex justify-start lg:w-0 lg:flex-1">
                 <div className="p-2">
                   <div className="bg-white flex items-center rounded-full shadow-xl">
@@ -22,7 +22,7 @@ export default function Headers({ login }) {
                         isSearch
                           ? "w-0 px-0"
                           : "w-full px-6" +
-                            "transition ease-linear duration-700 rounded-l-full py-1 text-gray-700 leading-tight focus:outline-none"
+                            "transition ease-linear duration-700 rounded-l-full py-1 bg-indigo-600 leading-tight focus:outline-none"
                       }
                       id="search"
                       type="text"
