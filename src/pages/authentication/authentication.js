@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { loadState, saveState } from "../../helpers/localStorage";
+import { useHistory } from "react-router-dom";
+import { saveState } from "../../helpers/localStorage";
 import FormComponet from "./formComponet";
 
 const Authentication = () => {
   const [usernameIsValid, setusernameIsValid] = useState(true);
   const [passwordIsValid, setpasswordIsValid] = useState(true);
-
+  const history = useHistory();
   const onSubmit = (data) => {
     return data.username && data.password && passwordIsValid && usernameIsValid
       ? Valid(data)
@@ -13,6 +14,7 @@ const Authentication = () => {
   };
   const Valid = (data) => {
     saveState(data, "auth");
+    history.push("/home");
   };
 
   const noValid = () => {
