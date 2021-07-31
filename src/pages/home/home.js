@@ -21,15 +21,19 @@ const Home = () => {
 
   const requestData = async () => {
     const data = await request(
-      "https://api.themoviedb.org/3/movie/top_rated?api_key=f53e6b2f16ed0b466ebc6de372262155"
+      "https://api.themoviedb.org/3/trending/movie/week?api_key=f53e6b2f16ed0b466ebc6de372262155&language=en-US&page=1&include_adult=false"
     );
     const data2 = await request(
-      "https://api.themoviedb.org/3//genre/movie/list?api_key=f53e6b2f16ed0b466ebc6de372262155"
+      "https://api.themoviedb.org/3/genre/movie/list?api_key=f53e6b2f16ed0b466ebc6de372262155"
     );
-    console.log(data2);
+    const data3 = await request(
+      "https://api.themoviedb.org/3/trending/movie/week?api_key=f53e6b2f16ed0b466ebc6de372262155&language=en-US&page=2&include_adult=false"
+    );
+
+    console.log(data3.results);
     setgenres(data2.genres);
     setList(
-      data.results.map((item) => (
+      [...data.results, data3.results[16]].map((item) => (
         <FilmCart
           key={item.id}
           img={item.poster_path}

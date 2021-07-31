@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const Menue = ({ genres }) => {
   const genre = genres.map((item) => (
     <div
@@ -15,5 +17,9 @@ const Menue = ({ genres }) => {
       </div>
     </div>
   );
+};
+
+Menue.propTypes = {
+  genres: PropTypes.array,
 };
 export default Menue;

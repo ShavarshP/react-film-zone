@@ -3,7 +3,7 @@ const FilmCart = ({
   name,
   voteAverage,
   originalLanguage,
-  releaseDate,
+  releaseDate = "0000-00-00",
   id,
   click,
 }) => {
