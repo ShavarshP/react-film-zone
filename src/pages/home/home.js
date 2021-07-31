@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useHttp } from "../../api/hook";
 import FilmCart from "./card/filmCard";
+import Menue from "./components.js/menue";
 import Headers from "./headers/headers";
 
 const Home = () => {
   const { loading, request, error, clearError } = useHttp();
   const [list, setList] = useState([]);
   const history = useHistory();
-
+  const [genres, setgenres] = useState([]);
   useEffect(() => {
     requestData();
   }, []);
@@ -22,7 +23,11 @@ const Home = () => {
     const data = await request(
       "https://api.themoviedb.org/3/movie/top_rated?api_key=f53e6b2f16ed0b466ebc6de372262155"
     );
-    console.log(data.results);
+    const data2 = await request(
+      "https://api.themoviedb.org/3//genre/movie/list?api_key=f53e6b2f16ed0b466ebc6de372262155"
+    );
+    console.log(data2);
+    setgenres(data2.genres);
     setList(
       data.results.map((item) => (
         <FilmCart
@@ -42,6 +47,7 @@ const Home = () => {
   return (
     <div className="bg-black">
       <Headers login={true} />
+      <Menue genres={genres} />
       <div className="flex flex-wrap mt-10 justify-center">{list}</div>
     </div>
   );
