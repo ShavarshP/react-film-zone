@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useHttp } from "../../api/hook";
+import MiniLoading from "../component/loading/miniLoading";
 import MyPage from "./componets/page";
 
 const Movie = () => {
@@ -9,6 +10,7 @@ const Movie = () => {
   const [data, setData] = useState([]);
   const [casts, setCast] = useState([]);
   const [recommendations, setRecommendations] = useState([]);
+  const [isLoading, setLoading] = useState(true);
   useEffect(() => {
     requestData();
   }, []);
@@ -34,18 +36,25 @@ const Movie = () => {
     setRecommendations(recommendations.results.splice(0, 10));
     setCast(cast.cast.splice(0, 6));
     setData(data);
+    setLoading(false);
   };
 
   return (
-    <div className="">
-      <MyPage
-        img={data.poster_path}
-        overview={data.overview}
-        originalTitle={data.original_title}
-        casts={casts}
-        recommendations={recommendations}
-      />
-    </div>
+    <>
+      {isLoading ? (
+        <MiniLoading />
+      ) : (
+        <div className="">
+          <MyPage
+            img={data.poster_path}
+            overview={data.overview}
+            originalTitle={data.original_title}
+            casts={casts}
+            recommendations={recommendations}
+          />
+        </div>
+      )}
+    </>
   );
 };
 

@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { Context } from "../..";
 import { saveState } from "../../helpers/localStorage";
 import FormComponet from "./formComponet";
+import firebase from "firebase";
 
-const Authentication = () => {
+const SignUp = () => {
   const [usernameIsValid, setusernameIsValid] = useState(true);
   const [passwordIsValid, setpasswordIsValid] = useState(true);
   const history = useHistory();
@@ -11,6 +13,15 @@ const Authentication = () => {
     return data.username && data.password && passwordIsValid && usernameIsValid
       ? Valid(data)
       : noValid();
+  };
+
+  const { auth } = useContext(Context);
+
+  const login = async () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    const { user } = await auth.signInWithPopup(provider);
+    console.log("sss", user);
+    history.push("/home");
   };
   const Valid = (data) => {
     saveState(data, "auth");
@@ -40,7 +51,7 @@ const Authentication = () => {
         usernameIsValid: usernameIsValid,
       }}
       onSubmit={onSubmit}
-      type={"Loign in"}
+      type={"Sign up"}
     />
   );
   return (
@@ -48,8 +59,15 @@ const Authentication = () => {
       <div className="max-w-md w-full space-y-8">
         <div>{form}</div>
       </div>
+      <div className="text-sm">
+        <button
+          onClick={login}
+          className="font-medium text-indigo-600 hover:text-indigo-500"
+        >
+          googl
+        </button>
+      </div>
     </div>
   );
 };
-
-export default Authentication;
+export default SignUp;

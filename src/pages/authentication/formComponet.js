@@ -1,5 +1,6 @@
 import { LockClosedIcon } from "@heroicons/react/solid";
 import { useForm } from "react-hook-form";
+import { NavLink } from "react-router-dom";
 
 const FormComponet = (props) => {
   const { register, handleSubmit } = useForm();
@@ -70,41 +71,57 @@ const FormComponet = (props) => {
               placeholder="******************"
               {...register("password")}
             />
-            <p className="text-grey-dark text-xs italic">
-              Make it as long and as crazy as you'd like
-            </p>
+            {props.type === "Loign in" ? (
+              <div></div>
+            ) : (
+              <p className="text-grey-dark text-xs italic">
+                Make it as long and as crazy as you'd like
+              </p>
+            )}
           </div>
         </div>
       </div>
 
       <div className="flex items-center justify-between">
-        <div className="flex items-center">
-          <input
-            id="remember-me"
-            name="remember-me"
-            type="checkbox"
-            className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-            {...register("rememberMe")}
-          />
-          <label
-            htmlFor="remember-me"
-            className="ml-2 block text-sm text-gray-900"
-          >
-            Remember me
-          </label>
-        </div>
-
-        <div className="text-sm">
-          <a className="font-medium text-indigo-600 hover:text-indigo-500">
-            Forgot your password?
-          </a>
-        </div>
+        {!(props.type === "Loign in") ? (
+          <div></div>
+        ) : (
+          <>
+            <div className="flex items-center">
+              <input
+                id="remember-me"
+                name="remember-me"
+                type="checkbox"
+                className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                {...register("rememberMe")}
+              />
+              <label
+                htmlFor="remember-me"
+                className="ml-2 block text-sm text-gray-900"
+              >
+                Remember me
+              </label>
+            </div>
+            <div className="text-sm">
+              <NavLink
+                to={"/signup"}
+                className="font-medium text-indigo-600 hover:text-indigo-500"
+              >
+                SIGN UP
+              </NavLink>
+            </div>
+          </>
+        )}
       </div>
 
       <div>
         <button
           type="submit"
-          className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          className={
+            props.type === "Loign in"
+              ? "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              : "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+          }
         >
           <span className="absolute left-0 inset-y-0 flex items-center pl-3">
             <LockClosedIcon
@@ -112,7 +129,7 @@ const FormComponet = (props) => {
               aria-hidden="true"
             />
           </span>
-          Sign in
+          {props.type}
         </button>
       </div>
     </form>

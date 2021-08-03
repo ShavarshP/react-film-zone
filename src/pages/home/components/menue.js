@@ -1,12 +1,13 @@
 import PropTypes from "prop-types";
 
 const Menue = ({ genres }) => {
+  console.log(genres);
   const genre = genres.map((item) => (
     <div
       key={item.id}
-      className="flex h-full items-center  hover:bg-black hover:bg-opacity-50"
+      className="flex h-full items-center  hover:bg-black hover:bg-opacity-50 cursor-pointer"
     >
-      <div className="mx-4 text-white">item.name</div>
+      <div className="mx-4 text-white">{item.name}</div>
       <div className=" h-8 w-px bg-gray-300"></div>
     </div>
   ));

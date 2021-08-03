@@ -9,10 +9,7 @@ const FilmCart = ({
 }) => {
   return (
     <div className="m-2">
-      <div
-        onClick={() => click(id)}
-        className="max-w-md w-60 bg-gray-900 shadow-lg rounded-xl p-2 cursor-pointer"
-      >
+      <div className="max-w-md w-60 bg-gray-900 shadow-lg rounded-xl p-2 cursor-pointer">
         <div className="flex flex-col ">
           <div className="">
             <div className="relative h-62 w-full mb-3">
@@ -35,6 +32,7 @@ const FilmCart = ({
                 </button>
               </div>
               <img
+                onClick={() => click(id)}
                 src={"https://image.tmdb.org/t/p/w500/" + img}
                 className="w-full"
                 alt="Mountain"
