@@ -58,14 +58,14 @@ const SignUp = () => {
     <div className="min-h-screen flex  justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>{form}</div>
-      </div>
-      <div className="text-sm">
-        <button
-          onClick={login}
-          className="font-medium text-indigo-600 hover:text-indigo-500"
-        >
-          googl
-        </button>
+        <div className="cursor-pointer flex justify-center rounded-lg text-sm bg-gray-300 h-9 border-2 border-purple-600 hover:bg-gray-400">
+          <button
+            onClick={login}
+            className="font-medium text-indigo-900 hover:text-indigo-900 "
+          >
+            googl
+          </button>
+        </div>
       </div>
     </div>
   );
